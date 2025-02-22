@@ -1,17 +1,18 @@
-import { useState } from "react";
-import Home from "./components/Home";
-import { Link, Route, Routes } from "react-router-dom";
-import Users from "./components/Users";
-import About from "./components/About";
-import UserDetails from "./components/UserDetails";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+
 
 function App() {
   return (
-    <>
-      <div className="w-full h-full bg-green-400">
-        shivam bonde
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }
 

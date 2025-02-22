@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { FaMobileAlt, FaLock } from "react-icons/fa";
+import { FaMobileAlt, FaLock, FaUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
+  const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [isValidMobile, setIsValidMobile] = useState(false);
@@ -16,7 +17,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-white text-gray-900 font-inter">
-      {/* Login Box */}
+      {/* Sign Up Box */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }} 
         animate={{ opacity: 1, scale: 1 }} 
@@ -24,11 +25,24 @@ const Login = () => {
         className="bg-white p-12 rounded-3xl shadow-2xl w-full max-w-lg transform transition-all duration-300 hover:scale-105">
         
         <h2 className="text-5xl font-extrabold text-center text-blue-700 mb-6">
-          Welcome Back
+          Create Account
         </h2>
         <p className="text-center text-gray-600 mb-6 text-lg font-medium">
-          "Just a tap away from your child's day, <br /> Making parent-teacher talks child's play."
+          "Join us in making parent-teacher communication effortless."
         </p>
+        
+        <motion.div 
+          whileHover={{ scale: 1.02, borderColor: "#3b82f6" }}
+          className="flex items-center bg-gray-100 p-4 rounded-xl mb-4 shadow-inner border-2 border-transparent hover:border-blue-500 transition-all">
+          <FaUser className="text-gray-500 mr-3 text-xl" />
+          <input 
+            type="text" 
+            placeholder="Enter your name" 
+            className="w-full bg-transparent focus:outline-none text-lg" 
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </motion.div>
         
         <motion.div 
           whileHover={{ scale: 1.02, borderColor: "#3b82f6" }}
@@ -66,15 +80,15 @@ const Login = () => {
           className={`w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-4 rounded-xl font-bold text-xl shadow-lg transition ${!isValidMobile ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={!isValidMobile}
         >
-          Login
+          Sign Up
         </motion.button>
         
         <p className="text-center text-gray-600 text-md mt-6">
-          Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline font-medium">Sign up</Link>
+          Already have an account? <Link to="/" className="text-blue-500 hover:underline font-medium">Login</Link>
         </p>
       </motion.div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
