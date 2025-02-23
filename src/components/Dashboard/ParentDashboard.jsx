@@ -1,19 +1,18 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 const ParentDashboard = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold">📊 Parent Dashboard</h1>
-      <div className="grid grid-cols-2 gap-4 mt-4">
-        <div className="p-4 bg-white shadow rounded-md">
-          <h2 className="text-lg font-semibold">📚 Student Profile</h2>
-          <p>Name: John Doe</p>
-          <p>Grade: 5th</p>
-        </div>
-        <div className="p-4 bg-white shadow rounded-md">
-          <h2 className="text-lg font-semibold">📅 Upcoming Events</h2>
-          <p>Parent-Teacher Meeting: 15th March</p>
-        </div>
+    <div className="flex bg-gray-100 min-h-screen">
+      {/* Sidebar - Fixed Position */}
+      <div className="fixed top-0 left-0 h-full w-64 bg-[#00B6BA] text-white p-6 shadow-lg">
+        <Sidebar />
+      </div>
+
+      {/* Main Content - Adjusted for Sidebar Width */}
+      <div className="ml-64 flex-1 p-6">
+        <Outlet />
       </div>
     </div>
   );

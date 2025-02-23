@@ -31,7 +31,7 @@ const Home = () => {
       >
         <div className="flex items-center gap-3">
         <img src="/assets/parental-guidance.png" alt="EduConnect Logo" className="w-12 h-12 border-4 border-gray-700 rounded-full shadow-lg hover:shadow-xl transition" />
-          <h1 className="text-3xl font-extrabold tracking-wide">EduConnect</h1>
+          <h1 className="text-3xl font-extrabold tracking-wide">EduMitra</h1>
         </div>
         <div className="flex items-center gap-6">
           <select
@@ -157,7 +157,7 @@ const Home = () => {
         </div>
       </div>
      
-      {/* Motivation Quote */}
+     
      
         
       {/* Motivation Quote */}
