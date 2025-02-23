@@ -34,6 +34,7 @@ const Home = () => {
           <h1 className="text-3xl font-extrabold tracking-wide">EduMitra</h1>
         </div>
         <div className="flex items-center gap-6">
+        <Link to="/dashboard" className="bg-white text-[#00B6BA] px-5 py-2 rounded-lg font-semibold shadow-md transition transform hover:scale-110 hover:bg-[#008A8E] hover:text-white">Dashboard</Link>
           <select
             className="bg-white text-gray-900 px-3 py-2 rounded-lg cursor-pointer border border-gray-300 hover:border-[#00B6BA] transition"
             onChange={(e) => setLanguage(e.target.value)}
@@ -145,9 +146,9 @@ const Home = () => {
           Your browser does not support the video tag.
         </motion.video>
         <div className="md:w-1/2 text-left">
-          <h2 className="text-5xl font-extrabold text-[#00B6BA] mb-6 drop-shadow-lg">How EduConnect Works</h2>
+          <h2 className="text-5xl font-extrabold text-[#00B6BA] mb-6 drop-shadow-lg">How EduMitra Works</h2>
           <p className="text-xl text-gray-700 mb-4 leading-relaxed font-semibold tracking-wide">
-            EduConnect bridges the gap between parents and educators, providing real-time updates, 
+            EduMitra bridges the gap between parents and educators, providing real-time updates, 
             seamless communication, and progress tracking. With intuitive features and an easy-to-use 
             interface, parents can stay informed about their child's academic journey.
           </p>
@@ -183,7 +184,7 @@ const Home = () => {
           <a href="#" className="hover:text-gray-700 transition transform hover:scale-125 hover:rotate-6"><FaInstagram size={36} /></a>
           <a href="#" className="hover:text-gray-700 transition transform hover:scale-125 hover:rotate-6"><FaLinkedin size={36} /></a>
         </div>
-        <p className="text-xl mt-5 mb-5">&copy; {new Date().getFullYear()} EduConnect. All Rights Reserved.</p>
+        <p className="text-xl mt-5 mb-5">&copy; {new Date().getFullYear()} EduMitra. All Rights Reserved.</p>
         <div className="mt-2">
           <Link to="/privacy" className="text-white hover:text-gray-300 mx-2">Privacy Policy</Link>|
           <Link to="/terms" className="text-white hover:text-gray-300 mx-2">Terms of Service</Link>|
