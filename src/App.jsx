@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -13,6 +14,15 @@ import RemindersAndAlerts from "./components/Dashboard/RemindersAndAlerts";
 import TeacherRatings from "./components/Dashboard/TeacherRating";
 import MeetingScheduler from "./components/Dashboard/MeetingScheduler";
 
+import TeacherDashboard from "./components/Teacher/TeacherDashboard";
+import ClassOverview from "./components/Teacher/ClassOverview";
+import AttendanceTracker from "./components/Teacher/AttendanceTracker";
+import ImportantNotice from "./components/Teacher/ImportanatNotice";
+import RemindersAndAlert from "./components/Teacher/RemindersAndAlert";
+import MeetingSchedulers from "./components/Teacher/MeetingSchedulers";
+import ManageAssignments from "./components/Teacher/ManageAssignments";
+import TeacherSchedule from "./components/Teacher/TeacherSchedule";
+
 function App() {
   return (
     <Router>
@@ -22,6 +32,16 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/aibot" element={<AiBot />} />
+        {/* Teacher Dashboard Routes */}
+        <Route path="/teacher" element={<TeacherDashboard />}>
+          <Route index element={<ClassOverview />} />
+          <Route path="assignments" element={<ManageAssignments />} />
+          <Route path="attendance" element={<AttendanceTracker />} />
+          <Route path="schedule" element={<TeacherSchedule />} />
+          <Route path="notice" element={<ImportantNotice />} />
+          <Route path="alert" element={<RemindersAndAlert />} />
+          <Route path="meeting" element={<MeetingSchedulers />} />
+        </Route>
 
         {/* Parent Dashboard Routes */}
         <Route path="/dashboard" element={<ParentDashboard />}>
@@ -32,6 +52,7 @@ function App() {
           <Route path="alerts" element={<RemindersAndAlerts />} />
           <Route path="ratings" element={<TeacherRatings />} />
           <Route path="meetings" element={<MeetingScheduler />} />
+          
         </Route>
       </Routes>
     </Router>

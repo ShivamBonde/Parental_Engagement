@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const ParentDashboard = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const TeacherDashboard = () => {
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= 768); // Sidebar default open on larger screens
 
-  // Function to close sidebar when a menu item is selected
+  // Close sidebar when clicking outside or selecting a menu item (on mobile)
   const handleCloseSidebar = () => {
-    setIsOpen(false);
+    if (window.innerWidth < 768) {
+      setIsOpen(false);
+    }
   };
+
+  // Ensure sidebar stays open on larger screens when resizing
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(true);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="flex bg-gray-100 min-h-screen">
@@ -18,7 +31,7 @@ const ParentDashboard = () => {
         className={`fixed top-0 left-0 h-full w-64 bg-[#00B6BA] text-white p-6 shadow-lg 
           transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-64"} md:translate-x-0`}
       >
-        <Sidebar onClose={handleCloseSidebar} /> {/* Pass close function to Sidebar */}
+        <Sidebar onClose={handleCloseSidebar} />
       </div>
 
       {/* Toggle Button for Mobile */}
@@ -37,4 +50,4 @@ const ParentDashboard = () => {
   );
 };
 
-export default ParentDashboard;
+export default TeacherDashboard;

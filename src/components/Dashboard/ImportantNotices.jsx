@@ -23,14 +23,14 @@ const ImportantNotices = () => {
   ];
 
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-xl shadow-2xl w-[calc(100vw-300px)] max-w-4xl mx-auto mt-6 border-2 border-[#00B6BA] overflow-hidden">
-      <h2 className="text-3xl font-extrabold text-[#00B6BA] mb-6 text-center">Important Notices</h2>
-      <div className="space-y-6">
+    <div className="bg-gray-900 text-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto mt-6 border-2 border-[#00B6BA] overflow-hidden z-10">
+      <h2 className="text-2xl sm:text-3xl font-extrabold text-[#00B6BA] mb-6 text-center">Important Notices</h2>
+      <div className="space-y-4 sm:space-y-6">
         {notices.map((notice) => (
-          <div key={notice.id} className="bg-gray-800 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700">
-            <h3 className="text-2xl font-semibold text-[#00B6BA]">{notice.title}</h3>
-            <p className="text-gray-300 text-lg font-medium mt-2">📅 {notice.date}</p>
-            <p className="text-gray-400 mt-2">{notice.description}</p>
+          <div key={notice.id} className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700">
+            <h3 className="text-lg sm:text-2xl font-semibold text-[#00B6BA]">{notice.title}</h3>
+            <p className="text-gray-300 text-sm sm:text-lg font-medium mt-2">📅 {notice.date}</p>
+            <p className="text-gray-400 text-sm sm:text-base mt-2">{notice.description}</p>
           </div>
         ))}
       </div>

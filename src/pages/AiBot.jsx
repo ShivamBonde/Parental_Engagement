@@ -16,7 +16,7 @@ const AIBot = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 ">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }} 
         animate={{ opacity: 1, scale: 1 }} 
@@ -24,21 +24,25 @@ const AIBot = () => {
         className="w-full max-w-md bg-white rounded-xl shadow-lg p-6"
       >
         <h2 className="text-2xl font-bold text-center text-[#00B6BA] mb-4">EduConnect AI Bot</h2>
-        <div className="h-64 overflow-y-auto border p-4 rounded-lg bg-gray-50">
+        <div className="h-64 overflow-y-auto border p-4 rounded-lg bg-gray-50 flex flex-col">
           {messages.map((msg, index) => (
-            <div key={index} className={`p-2 my-1 rounded-lg ${msg.user ? 'bg-[#00B6BA] text-white ml-auto' : 'bg-gray-200 text-gray-800 mr-auto'} max-w-xs`}>{msg.text}</div>
+            <div 
+              key={index} 
+              className={`p-2 my-1 rounded-lg max-w-xs ${msg.user ? 'bg-[#00B6BA] text-white self-end' : 'bg-gray-200 text-gray-800 self-start'}`}>
+              {msg.text}
+            </div>
           ))}
         </div>
-        <div className="flex mt-4">
+        <div className="flex mt-4 w-full">
           <input 
             type="text" 
-            className="flex-1 p-2 border rounded-l-lg focus:outline-none" 
+            className="flex-1 p-2 border rounded-l-lg focus:outline-none text-sm sm:text-base" 
             placeholder="Ask me anything..." 
             value={input} 
             onChange={(e) => setInput(e.target.value)}
           />
           <button 
-            className="bg-[#00B6BA] text-white px-4 py-2 rounded-r-lg hover:bg-[#008A8E] transition" 
+            className="bg-[#00B6BA] text-white px-3 sm:px-4 py-2 rounded-r-lg hover:bg-[#008A8E] transition text-sm sm:text-base" 
             onClick={handleSend}
           >
             Send

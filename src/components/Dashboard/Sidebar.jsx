@@ -10,7 +10,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 z-40">
       <h2 className="text-xl font-bold">Parent Dashboard</h2>
       <ul className="space-y-2">
         <li>

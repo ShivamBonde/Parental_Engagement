@@ -33,13 +33,13 @@ const TeacherRatings = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white p-8 rounded-xl shadow-lg w-full max-w-3xl mx-auto border-2 border-[#00B6BA] transition-all duration-500 hover:shadow-[#00B6BA]/50 hover:border-[#00E6E9]">
-      <h2 className="text-3xl font-bold text-[#00B6BA] mb-6 text-center">Teacher Ratings</h2>
+    <div className="bg-gray-800 text-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto border-2 border-[#00B6BA] transition-all duration-500 hover:shadow-[#00B6BA]/50 hover:border-[#00E6E9]">
+      <h2 className="text-2xl sm:text-3xl font-bold text-[#00B6BA] mb-6 text-center">Teacher Ratings</h2>
       
       <div className="space-y-4">
         {teachers.map((teacher) => (
           <div key={teacher.id} className="p-4 bg-gray-900 rounded-lg shadow hover:bg-gray-700 transition">
-            <h3 className="text-xl font-semibold text-[#00E6E9]">{teacher.name} ({teacher.subject})</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-[#00E6E9]">{teacher.name} ({teacher.subject})</h3>
             <div className="flex items-center mt-2">
               {[...Array(5)].map((_, i) => (
                 <FaStar
@@ -51,13 +51,13 @@ const TeacherRatings = () => {
                   }
                 />
               ))}
-              <span className="ml-2 text-gray-300">{teacher.rating}/5</span>
+              <span className="ml-2 text-gray-300 text-sm sm:text-base">{teacher.rating}/5</span>
             </div>
             {teacher.feedbacks.length > 0 && (
               <div className="mt-3 p-3 bg-gray-700 rounded-lg">
                 <h4 className="text-[#00B6BA] font-semibold">Feedback:</h4>
                 {teacher.feedbacks.map((fb, index) => (
-                  <p key={index} className="text-gray-300 text-sm">⭐ {fb.rating}/5 - {fb.feedback}</p>
+                  <p key={index} className="text-gray-300 text-xs sm:text-sm">⭐ {fb.rating}/5 - {fb.feedback}</p>
                 ))}
               </div>
             )}
@@ -65,12 +65,12 @@ const TeacherRatings = () => {
         ))}
       </div>
 
-      <h3 className="text-2xl font-semibold text-[#00B6BA] mt-8 text-center">Leave Feedback</h3>
+      <h3 className="text-xl sm:text-2xl font-semibold text-[#00B6BA] mt-8 text-center">Leave Feedback</h3>
       <form onSubmit={handleSubmit} className="mt-4 space-y-4">
         <select
           value={selectedTeacher}
           onChange={(e) => setSelectedTeacher(e.target.value)}
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B6BA] bg-gray-900 text-white"
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B6BA] bg-gray-900 text-white text-sm sm:text-base"
         >
           <option value="">Select a Teacher</option>
           {teachers.map((teacher) => (
@@ -82,7 +82,7 @@ const TeacherRatings = () => {
             <FaStar
               key={i}
               onClick={() => setRating(i + 1)}
-              className={`cursor-pointer text-3xl transition-all ${i < rating ? "text-yellow-400" : "text-gray-500"}`}
+              className={`cursor-pointer text-2xl sm:text-3xl transition-all ${i < rating ? "text-yellow-400" : "text-gray-500"}`}
             />
           ))}
         </div>
@@ -90,11 +90,11 @@ const TeacherRatings = () => {
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
           placeholder="Write your feedback here..."
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B6BA] bg-gray-900 text-white"
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B6BA] bg-gray-900 text-white text-sm sm:text-base"
         />
         <button
           type="submit"
-          className="w-full bg-[#00B6BA] text-white p-3 rounded-lg shadow hover:bg-[#009092] transition font-bold"
+          className="w-full bg-[#00B6BA] text-white p-3 rounded-lg shadow hover:bg-[#009092] transition font-bold text-sm sm:text-base"
         >
           Submit Feedback
         </button>

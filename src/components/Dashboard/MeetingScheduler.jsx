@@ -41,36 +41,36 @@ const MeetingScheduler = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-xl shadow-lg w-full max-w-3xl mx-auto border-2 border-[#00B6BA] transition-all duration-500 hover:shadow-[#00B6BA]/50 hover:border-[#00E6E9]">
-      <h2 className="text-3xl font-bold text-[#00B6BA] mb-6 text-center">Meeting Scheduler</h2>
+    <div className="bg-gray-900 text-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto border-2 border-[#00B6BA] transition-all duration-500 hover:shadow-[#00B6BA]/50 hover:border-[#00E6E9]">
+      <h2 className="text-2xl sm:text-3xl font-bold text-[#00B6BA] mb-6 text-center">Meeting Scheduler</h2>
       
       <div className="space-y-4">
         {meetings.map((meeting) => (
-          <div key={meeting.id} className="p-6 bg-gray-800 rounded-lg shadow-lg flex justify-between items-center">
-            <div>
-              <p className="text-lg flex items-center text-gray-300">
+          <div key={meeting.id} className="p-4 sm:p-6 bg-gray-800 rounded-lg shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            <div className="w-full sm:w-auto">
+              <p className="text-sm sm:text-lg flex items-center text-gray-300">
                 <FaUser className="text-[#00E6E9] mr-2" /> {meeting.teacher}
               </p>
-              <p className="text-lg flex items-center text-gray-300 mt-2">
+              <p className="text-sm sm:text-lg flex items-center text-gray-300 mt-1 sm:mt-2">
                 <FaCalendarAlt className="text-[#00E6E9] mr-2" /> {meeting.date}
               </p>
-              <p className="text-lg flex items-center text-gray-300 mt-2">
+              <p className="text-sm sm:text-lg flex items-center text-gray-300 mt-1 sm:mt-2">
                 <FaClock className="text-[#00E6E9] mr-2" /> {meeting.time}
               </p>
-              <p className={`mt-2 font-semibold ${meeting.status === "Accepted" ? "text-green-400" : meeting.status === "Rejected" ? "text-red-400" : "text-yellow-400"}`}>{meeting.status}</p>
+              <p className={`mt-1 sm:mt-2 font-semibold ${meeting.status === "Accepted" ? "text-green-400" : meeting.status === "Rejected" ? "text-red-400" : "text-yellow-400"}`}>{meeting.status}</p>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex space-x-2 sm:space-x-3 mt-2 sm:mt-0">
               {meeting.status === "Pending" && (
                 <>
-                  <button onClick={() => handleAccept(meeting.id)} className="bg-green-500 px-4 py-2 rounded-lg text-white hover:bg-green-600">
+                  <button onClick={() => handleAccept(meeting.id)} className="bg-green-500 p-2 rounded-lg text-white hover:bg-green-600">
                     <FaCheck />
                   </button>
-                  <button onClick={() => handleReject(meeting.id)} className="bg-red-500 px-4 py-2 rounded-lg text-white hover:bg-red-600">
+                  <button onClick={() => handleReject(meeting.id)} className="bg-red-500 p-2 rounded-lg text-white hover:bg-red-600">
                     <FaTimes />
                   </button>
                 </>
               )}
-              <button onClick={() => handleOpenForm(meeting)} className="bg-[#00B6BA] px-4 py-2 rounded-lg text-white hover:bg-[#009092]">
+              <button onClick={() => handleOpenForm(meeting)} className="bg-[#00B6BA] p-2 rounded-lg text-white hover:bg-[#009092]">
                 <FaEdit />
               </button>
             </div>
@@ -84,8 +84,8 @@ const MeetingScheduler = () => {
       
       {showForm && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-md border-2 border-[#00B6BA]">
-            <h3 className="text-xl font-bold text-[#00B6BA] mb-4">{selectedMeeting ? "Modify Meeting" : "Schedule a Meeting"}</h3>
+          <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-lg border-2 border-[#00B6BA]">
+            <h3 className="text-lg sm:text-xl font-bold text-[#00B6BA] mb-4">{selectedMeeting ? "Modify Meeting" : "Schedule a Meeting"}</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <select value={formData.teacher} onChange={(e) => setFormData({ ...formData, teacher: e.target.value })} className="w-full p-3 border rounded-lg bg-gray-800 text-white">
                 <option value="">Select a Teacher</option>
