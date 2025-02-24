@@ -10,7 +10,7 @@ const Sidebar = ({ onClose }) => {
     { name: "Students", path: "/teacher/students", icon: <FaUsers /> },
     { name: "Schedule", path: "/teacher/schedule", icon: <FaCalendarAlt /> },
     { name: "Assignments", path: "/teacher/assignments", icon: <FaClipboardList /> },
-    { name: "Logout", path: "/logout", icon: <FaSignOutAlt /> },
+    { name: "Logout", path: "/", icon: <FaSignOutAlt /> },
   ];
 
   return (
