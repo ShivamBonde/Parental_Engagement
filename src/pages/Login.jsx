@@ -1,18 +1,63 @@
 import { FaMobileAlt, FaLock, FaUserGraduate, FaUserTie } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import API from "../utils/api";  // Import API file
 
 const Login = () => {
   const [mobile, setMobile] = useState("");
   const [otp, setOtp] = useState("");
   const [isValidMobile, setIsValidMobile] = useState(false);
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("parent"); // "parent" or "teacher"
+
+  const navigate = useNavigate();
 
   const handleMobileChange = (e) => {
     const value = e.target.value;
     setMobile(value);
     setIsValidMobile(/^\d{10}$/.test(value)); // Validates 10-digit mobile number
+  };
+
+  // ✅ Send OTP API Call
+  const handleSendOtp = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await API.post("/auth/send-otp", { mobile });
+      if (response.data.success) {
+        setIsOtpSent(true);
+      } else {
+        setError(response.data.error || "Failed to send OTP.");
+      }
+    } catch (err) {
+      setError("Number is Not vaild.");
+    }
+
+    setLoading(false);
+  };
+
+  // ✅ Verify OTP API Call
+  const handleVerifyOtp = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await API.post("/auth/verify-otp", { mobile, otp, role: userType });
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token); // Store JWT token
+        navigate("/dashboard"); // Redirect to dashboard
+      } else {
+        setError(response.data.error || "Invalid OTP.");
+      }
+    } catch (err) {
+      setError("Error verifying OTP.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -24,7 +69,6 @@ const Login = () => {
         transition={{ duration: 0.5 }}
         className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg w-full max-w-md sm:max-w-lg lg:max-w-xl transform transition-all duration-300 hover:scale-105"
       >
-        
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-4 sm:mb-6">
           Welcome Back
         </h2>
@@ -71,9 +115,23 @@ const Login = () => {
             onChange={handleMobileChange}
           />
         </motion.div>
-        
-        {/* OTP Input (Only if Mobile is Valid) */}
-        {isValidMobile && (
+
+        {/* Send OTP Button */}
+        {!isOtpSent && (
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`w-full py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg transition
+              ${!isValidMobile ? 'opacity-50 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+            onClick={handleSendOtp}
+            disabled={!isValidMobile || loading}
+          >
+            {loading ? "Sending OTP..." : "Send OTP"}
+          </motion.button>
+        )}
+
+        {/* OTP Input (Only if OTP Sent) */}
+        {isOtpSent && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -90,19 +148,23 @@ const Login = () => {
             />
           </motion.div>
         )}
-        
-        {/* Login Button */}
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`w-full py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg transition
-            ${!isValidMobile ? 'opacity-50 cursor-not-allowed' : ''}
-            ${userType === "parent" ? "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white" : 
-            "bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white"}`}
-          disabled={!isValidMobile}
-        >
-          Login as {userType.charAt(0).toUpperCase() + userType.slice(1)}
-        </motion.button>
+
+        {/* Verify OTP Button */}
+        {isOtpSent && (
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`w-full py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl shadow-lg transition
+              ${otp.length !== 6 ? 'opacity-50 cursor-not-allowed' : 'bg-green-500 text-white hover:bg-green-600'}`}
+            onClick={handleVerifyOtp}
+            disabled={otp.length !== 6 || loading}
+          >
+            {loading ? "Verifying..." : `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
+          </motion.button>
+        )}
+
+        {/* Error Message */}
+        {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
         {/* Signup Link */}
         <p className="text-center text-gray-600 text-sm sm:text-md mt-4 sm:mt-6">
