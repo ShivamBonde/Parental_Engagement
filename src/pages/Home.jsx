@@ -52,19 +52,34 @@ const Home = () => {
 
       {/* Navigation Links */}
       <div className={`md:flex md:items-center md:gap-6 absolute md:static top-16 left-0 w-full md:w-auto bg-[#00B6BA] md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ${isOpen ? "block" : "hidden"}`}>
-      {/* <Link to="/TeacherDashboard" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent">Teacher Dashboard</Link> */}
-        <Link to="/dashboard" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent">Dashboard</Link>
-        <select
-          className="block md:inline-block bg-white text-gray-900 px-3 py-2 rounded-lg border border-gray-300 hover:border-[#00B6BA] mx-6 md:mx-0 my-2 md:my-0"
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option>English</option>
-          <option>Spanish</option>
-          <option>French</option>
-        </select>
-        <Link to="/login" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent">Login</Link>
-        <Link to="/signup" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent">Sign Up</Link>
-      </div>
+  <Link 
+    to="/teacher" 
+    className="block md:inline-block px-6 py-3 md:py-0 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-105 hover:shadow-xl"
+  >
+    Teacher Dashboard
+  </Link>
+
+  <Link 
+    to="/dashboard" 
+    className="block md:inline-block px-6 py-3 md:py-0 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-105 hover:shadow-xl"
+  >
+    Student Dashboard
+  </Link>
+
+  <select
+    className="block md:inline-block bg-white text-gray-900 px-3 py-2 rounded-lg border border-gray-300 hover:border-[#00B6BA] mx-6 md:mx-0 my-2 md:my-0 transition-all duration-300 hover:shadow-md"
+    onChange={(e) => setLanguage(e.target.value)}
+  >
+    <option>English</option>
+    <option>Spanish</option>
+    <option>French</option>
+  </select>
+
+  <Link to="/login" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent transition-all duration-300 hover:text-white">Login</Link>
+  <Link to="/signup" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent transition-all duration-300 hover:text-white">Sign Up</Link>
+</div>
+
+
     </motion.nav>
 
       

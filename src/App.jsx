@@ -22,6 +22,7 @@ import RemindersAndAlert from "./components/Teacher/RemindersAndAlert";
 import MeetingSchedulers from "./components/Teacher/MeetingSchedulers";
 import ManageAssignments from "./components/Teacher/ManageAssignments";
 import TeacherSchedule from "./components/Teacher/TeacherSchedule";
+import Students from "./components/Teacher/Students";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         {/* Teacher Dashboard Routes */}
         <Route path="/teacher" element={<TeacherDashboard />}>
           <Route index element={<ClassOverview />} />
+          <Route path="students" element={<Students />} /> {/* New Student Section */}
           <Route path="assignments" element={<ManageAssignments />} />
           <Route path="attendance" element={<AttendanceTracker />} />
           <Route path="schedule" element={<TeacherSchedule />} />
