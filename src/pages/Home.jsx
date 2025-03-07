@@ -26,61 +26,79 @@ const Home = () => {
 
   return (
     <div className="font-poppins text-gray-900">
-          <motion.nav 
-      initial={{ opacity: 0, y: -20 }} 
-      animate={{ opacity: 1, y: 0 }} 
-      transition={{ duration: 0.5 }}
-      className="bg-[#00B6BA] text-white py-4 px-6 flex justify-between items-center shadow-lg w-full"
-    >
-      {/* Logo */}
-      <div className="flex items-center gap-3">
-        <img 
-          src="/assets/parental-guidance.png" 
-          alt="EduMitra Logo" 
-          className="w-12 h-12 border-4 border-gray-700 rounded-full shadow-lg" 
-        />
-        <h1 className="text-2xl md:text-3xl font-extrabold tracking-wide">EduMitra</h1>
-      </div>
-
-      {/* Mobile Menu Button */}
-      <button 
-        className="md:hidden text-white text-2xl" 
-        onClick={() => setIsOpen(!isOpen)}
+          <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-[#00B6BA] text-white py-4 px-6 flex justify-between items-center shadow-lg w-full"
       >
-        {isOpen ? <FaTimes/> : <FaBars />}
-      </button>
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/assets/parental-guidance.png"
+            alt="EduMitra Logo"
+            className="w-12 h-12 border-4 border-gray-700 rounded-full shadow-lg hover:scale-110 transition-all duration-300"
+          />
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-wide">EduMitra</h1>
+        </div>
 
-      {/* Navigation Links */}
-      <div className={`md:flex md:items-center md:gap-6 absolute md:static top-16 left-0 w-full md:w-auto bg-[#00B6BA] md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ${isOpen ? "block" : "hidden"}`}>
-  <Link 
-    to="/teacher" 
-    className="block md:inline-block px-6 py-3 md:py-0 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-105 hover:shadow-xl"
-  >
-    Teacher Dashboard
-  </Link>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white text-2xl hover:scale-110 transition-all duration-300"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
 
-  <Link 
-    to="/dashboard" 
-    className="block md:inline-block px-6 py-3 md:py-0 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-105 hover:shadow-xl"
-  >
-    Student Dashboard
-  </Link>
+        {/* Navigation Links */}
+        <div
+          className={`md:flex md:items-center md:gap-6 absolute md:static top-16 left-0 w-full md:w-auto bg-[#00B6BA] md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ${
+            isOpen ? "block" : "hidden"
+          }`}
+        >
+          {/* Teacher Dashboard */}
+          <Link
+            to="/teacher"
+            className="block md:inline-block px-6 py-3 md:py-2 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg border border-white transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-110 hover:shadow-xl"
+          >
+            Teacher Dashboard
+          </Link>
 
-  <select
-    className="block md:inline-block bg-white text-gray-900 px-3 py-2 rounded-lg border border-gray-300 hover:border-[#00B6BA] mx-6 md:mx-0 my-2 md:my-0 transition-all duration-300 hover:shadow-md"
-    onChange={(e) => setLanguage(e.target.value)}
-  >
-    <option>English</option>
-    <option>Spanish</option>
-    <option>French</option>
-  </select>
+          {/* Student Dashboard */}
+          <Link
+            to="/dashboard"
+            className="block md:inline-block px-6 py-3 md:py-2 bg-gradient-to-r from-[#00B6BA] to-[#008A8E] text-white font-bold rounded-lg shadow-lg border border-white transition-all duration-300 hover:from-[#008A8E] hover:to-[#00B6BA] hover:scale-110 hover:shadow-xl"
+          >
+            Student Dashboard
+          </Link>
 
-  <Link to="/login" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent transition-all duration-300 hover:text-white">Login</Link>
-  <Link to="/signup" className="block md:inline-block px-6 py-3 md:py-0 hover:bg-[#008A8E] md:hover:bg-transparent transition-all duration-300 hover:text-white">Sign Up</Link>
-</div>
+          {/* Language Selector */}
+          <select
+            className="block md:inline-block bg-white text-gray-900 px-3 py-2 rounded-lg border border-gray-300 hover:border-[#00B6BA] mx-6 md:mx-0 my-2 md:my-0 transition-all duration-300 hover:shadow-md hover:scale-105"
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            <option>English</option>
+            <option>Spanish</option>
+            <option>French</option>
+          </select>
 
+          {/* Login */}
+          <Link
+            to="/login"
+            className="block md:inline-block px-6 py-3 md:py-0 text-white transition-all duration-300 hover:text-gray-900 hover:bg-white hover:scale-105 rounded-lg"
+          >
+            Login
+          </Link>
 
-    </motion.nav>
+          {/* Sign Up */}
+          <Link
+            to="/signup"
+            className="block md:inline-block px-6 py-3 md:py-0 text-white transition-all duration-300 hover:text-gray-900 hover:bg-white hover:scale-105 rounded-lg"
+          >
+            Sign Up
+          </Link>
+        </div>
+      </motion.nav>
 
       
       {/* Hero Section */}
@@ -180,7 +198,7 @@ const Home = () => {
           className="w-full max-w-[42rem] rounded-xl shadow-2xl border-4 border-[#00B6BA] hover:border-[#008A8E] transition-all"
           controls poster="/assets/thumbnail2.jpg"
         >
-          <source src="/assets/video.mp4" type="video/mp4" />
+          <source src="/assets/eduMitra.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </motion.video>
         <div className="md:w-1/2 text-left">
